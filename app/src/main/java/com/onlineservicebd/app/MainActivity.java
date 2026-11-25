@@ -44,17 +44,17 @@ public class MainActivity extends Activity {
       TextView brand=text("◉  অনলাইন সার্ভিস বিডি",22,WHITE,true);header.addView(brand);
       TextView sub=text("ONLINE SERVICE BD",12,GOLD,true);sub.setPadding(42,0,0,0);header.addView(sub);
       TextView page=text(title,16,WHITE,true);page.setPadding(0,13,0,0);header.addView(page);root.addView(header);
-      ScrollView scroll=new ScrollView(this);body=column();body.setPadding(14,14,14,18);scroll.addView(body);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+      ScrollView scroll=new ScrollView(this);body=column();body.setPadding(14,4,14,12);scroll.addView(body);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
       nav=row();nav.setBackground(bg(DEEP,0,0));String[] labels={"⌂\nহোম","▦\nসার্ভিস","🛒\nঅর্ডার","♧\nনোটিফাই","●\nপ্রোফাইল"};
       for(int i=0;i<labels.length;i++){final int n=i;TextView b=text(labels[i],12,i==0?CYAN:WHITE,true);b.setGravity(Gravity.CENTER);b.setPadding(2,12,2,12);nav.addView(b,new LinearLayout.LayoutParams(0,-2,1));b.setOnClickListener(v->{if(n==0)showHome();else if(n==1)showServices();else if(n==2)showOrders();else if(n==3)showNotifications();else showProfile();});}root.addView(nav);
     }
-    private void section(String s){TextView t=text(s,17,NAVY,true);t.setPadding(3,12,3,8);body.addView(t);}
+    private void section(String s){TextView t=text(s,17,NAVY,true);t.setPadding(3,7,3,5);body.addView(t);}
     private void card(View v){LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=10;v.setBackground(bg(WHITE,18,0xffd8e6f1));v.setElevation(3);v.setPadding(14,13,14,13);body.addView(v,p);}
     private TextView button(String s){TextView b=text(s,15,WHITE,true);b.setGravity(Gravity.CENTER);b.setPadding(15,13,15,13);b.setBackground(bg(BLUE,28,0));return b;}
     private void showHome(){init("হোম");
-      TextView hello=text("👋  আসসালামু আলাইকুম, "+(loggedIn?userName:"স্বাগতম"),18,NAVY,true);hello.setPadding(4,8,4,14);body.addView(hello);
-      LinearLayout bal=row();bal.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,new int[]{0xff0078c8,0xff04b9e8}));bal.setPadding(16,18,16,18);LinearLayout left=column();left.addView(text("আমার ব্যালেন্স",16,WHITE,true));left.addView(text("৳  —",28,GOLD,true));bal.addView(left,new LinearLayout.LayoutParams(0,-2,1));TextView recharge=button("＋ রিচার্জ করুন");bal.addView(recharge);recharge.setOnClickListener(v->showLogin("রিচার্জ করতে লগইন করুন"));body.addView(bal);
-      EditText search=new EditText(this);search.setSingleLine(true);search.setHint("আপনার প্রয়োজনীয় সেবা খুঁজুন...");search.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_search,0,0,0);LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(-1,-2);sp.setMargins(0,14,0,8);body.addView(search,sp);
+      TextView hello=text("👋  আসসালামু আলাইকুম, "+(loggedIn?userName:"স্বাগতম"),18,NAVY,true);hello.setPadding(4,2,4,7);body.addView(hello);
+      LinearLayout bal=row();bal.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,new int[]{0xff0078c8,0xff04b9e8}));bal.setPadding(16,12,16,12);LinearLayout left=column();left.addView(text("আমার ব্যালেন্স",16,WHITE,true));left.addView(text("৳  —",28,GOLD,true));bal.addView(left,new LinearLayout.LayoutParams(0,-2,1));TextView recharge=button("＋ রিচার্জ করুন");bal.addView(recharge);recharge.setOnClickListener(v->showLogin("রিচার্জ করতে লগইন করুন"));body.addView(bal);
+      EditText search=new EditText(this);search.setSingleLine(true);search.setHint("আপনার প্রয়োজনীয় সেবা খুঁজুন...");search.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_search,0,0,0);LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(-1,-2);sp.setMargins(0,8,0,5);body.addView(search,sp);
       section("জনপ্রিয় সেবা");String[] popular={services[0],services[6],services[11],services[16],services[20],services[22]};for(String s:popular){TextView t=text("▣   "+s+"     ›",16,INK,true);card(t);t.setOnClickListener(v->showService(s));}
       section("সকল সেবা");TextView all=button("সব সেবা দেখুন  →");body.addView(all);all.setOnClickListener(v->showServices());
       section("সাম্প্রতিক অর্ডার");TextView orders=text(loggedIn?"আপনার অর্ডার দেখতে এখানে চাপ দিন":"অর্ডার দেখতে প্রথমে লগইন করুন",15,NAVY,true);card(orders);orders.setOnClickListener(v->showOrders());
